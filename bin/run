@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/environment.rb'
+
+BASE_URL = "https://www.tottenhamhotspur.com"
+
+url = "https://www.tottenhamhotspur.com/teams/first-team/players/"
+html = open(url)
+html_parsed = Nokogiri::HTML(html)
+players = html_parsed.css('.PlayersPlayer')
+
+players.each do |player|
+    number = player.css('.PlayersPlayer__number').text
+    name = player.css('.PlayersPlayer__name').text
+    hometown = player.css('.PlayersPlayer__country').text
+
+    player_detail_url = player.attr("href")
+    player_detail_html = open(BASE_URL + player_detail_url)
+    player_detail_html_parsed = Nokogiri::HTML(player_detail_html)
+
+    # birthdate = css('.no-spacing').text
+
+    binding.pry
+
+    Player.new(number, name, hometown)
+
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    puts "Player Number: #{number}"
+    puts "Player Name: #{name}"
+    puts "Player Hometown: #{hometown}"
+    puts ""
+end
+
+# binding.pry
