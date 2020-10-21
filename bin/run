@@ -17,17 +17,27 @@ players.each do |player|
     player_detail_url = player.attr("href")
     player_detail_html = open(BASE_URL + player_detail_url)
     player_detail_html_parsed = Nokogiri::HTML(player_detail_html)
+    birthdate = player_detail_html_parsed.css('.no-spacing').text
 
-    # birthdate = css('.no-spacing').text
+    player_detail_multiple_text = player_detail_html_parsed.css('.rte')[0]
+    player_detail_divided_text1 = player_detail_multiple_text.css('p')[0].text
+    player_detail_divided_text2 = player_detail_multiple_text.css('p')[1].text
+    # player_detail_divided_text3 = player_detail_multiple_text.css('p')[2].text
 
-    binding.pry
+    Players.new(number, name, hometown, birthdate, player_detail_divided_text1, player_detail_divided_text2)
 
-    Player.new(number, name, hometown)
-
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
     puts "Player Number: #{number}"
     puts "Player Name: #{name}"
     puts "Player Hometown: #{hometown}"
+    puts ""
+    puts "Player Info:"
+    puts ""
+    puts birthdate
+    puts ""
+    puts player_detail_divided_text1
+    puts player_detail_divided_text2
+    # puts player_detail_divided_text3
     puts ""
 end
 
