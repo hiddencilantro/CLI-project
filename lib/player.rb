@@ -1,4 +1,4 @@
-class Players
+class Player
     
     def initialize(number, name, hometown, birthdate, player_detail_divided_text1, player_detail_divided_text2)
         @number = number

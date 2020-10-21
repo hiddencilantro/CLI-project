@@ -2,43 +2,74 @@
 
 require_relative '../config/environment.rb'
 
-BASE_URL = "https://www.tottenhamhotspur.com"
+BASE_URL = "https://www.premierleague.com"
 
-url = "https://www.tottenhamhotspur.com/teams/first-team/players/"
+url = "https://www.premierleague.com/tables"
 html = open(url)
 html_parsed = Nokogiri::HTML(html)
-players = html_parsed.css('.PlayersPlayer')
+clubs = html_parsed.css('.tableBodyContainer.isPL').css('tr:not(.expandable)')
 
-players.each do |player|
-    number = player.css('.PlayersPlayer__number').text
-    name = player.css('.PlayersPlayer__name').text
-    hometown = player.css('.PlayersPlayer__country').text
+clubs.each do |club|
+    position = club.css('.value').text
+    club_name = club.css('.long').text
+    matches_played = club.css('td')[3].text
+    matches_won = club.css('td')[4].text
+    matches_drawn = club.css('td')[5].text
+    matches_lost = club.css('td')[6].text
+    goals_for = club.css('td')[7].text
+    goals_against = club.css('td')[8].text
+    goal_diff = club.css('td')[9].text.strip
+    points = club.css('td')[10].text
 
-    player_detail_url = player.attr("href")
-    player_detail_html = open(BASE_URL + player_detail_url)
-    player_detail_html_parsed = Nokogiri::HTML(player_detail_html)
-    birthdate = player_detail_html_parsed.css('.no-spacing').text
-
-    player_detail_multiple_text = player_detail_html_parsed.css('.rte')[0]
-    player_detail_divided_text1 = player_detail_multiple_text.css('p')[0].text
-    player_detail_divided_text2 = player_detail_multiple_text.css('p')[1].text
-    # player_detail_divided_text3 = player_detail_multiple_text.css('p')[2].text
-
-    Players.new(number, name, hometown, birthdate, player_detail_divided_text1, player_detail_divided_text2)
-
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    puts "Player Number: #{number}"
-    puts "Player Name: #{name}"
-    puts "Player Hometown: #{hometown}"
+    Team.new(position, club_name, matches_played, matches_won, matches_drawn, matches_lost)
+    
+    puts "-------------------------------------------------------------------------------"
+    puts "#{position}  #{club_name}"
     puts ""
-    puts "Player Info:"
+    puts "Played: #{matches_played} / Won: #{matches_won} / Drawn: #{matches_drawn} / Lost: #{matches_lost} / GF: #{goals_for} / GA: #{goals_against} / GD: #{goal_diff} / Points: #{points}"
     puts ""
-    puts birthdate
-    puts ""
-    puts player_detail_divided_text1
-    puts player_detail_divided_text2
-    # puts player_detail_divided_text3
-    puts ""
+    
 end
+
+# binding.pry
+
+# BASE_URL = "https://www.tottenhamhotspur.com"
+
+# url = "https://www.tottenhamhotspur.com/teams/first-team/players/"
+# html = open(url)
+# html_parsed = Nokogiri::HTML(html)
+# players = html_parsed.css('.PlayersPlayer')
+
+# players.each do |player|
+#     number = player.css('.PlayersPlayer__number').text
+#     name = player.css('.PlayersPlayer__name').text
+#     hometown = player.css('.PlayersPlayer__country').text
+
+#     player_detail_url = player.attr("href")
+#     player_detail_html = open(BASE_URL + player_detail_url)
+#     player_detail_html_parsed = Nokogiri::HTML(player_detail_html)
+#     birthdate = player_detail_html_parsed.css('.no-spacing').text
+
+#     player_detail_multiple_text = player_detail_html_parsed.css('.rte')[0]
+#     player_detail_divided_text1 = player_detail_multiple_text.css('p')[0].text
+#     player_detail_divided_text2 = player_detail_multiple_text.css('p')[1].text
+#     # player_detail_divided_text3 = player_detail_multiple_text.css('p')[2].text
+
+#     Player.new(number, name, hometown, birthdate, player_detail_divided_text1, player_detail_divided_text2)
+
+#     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+#     puts "Player Number: #{number}"
+#     puts "Player Name: #{name}"
+#     puts "Player Hometown: #{hometown}"
+#     puts ""
+#     puts "Player Info:"
+#     puts ""
+#     puts birthdate
+#     puts ""
+#     puts player_detail_divided_text1
+#     puts player_detail_divided_text2
+#     # puts player_detail_divided_text3
+#     puts ""
+# end
 
 # binding.pry
