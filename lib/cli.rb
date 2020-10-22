@@ -17,7 +17,7 @@ class CLI
                 Club.print_all_clubs
                 break
             when "2"
-                League.print_league_standings
+                Club.print_league_standings
                 break
             else
                 puts "Invalid entry. Please try again."

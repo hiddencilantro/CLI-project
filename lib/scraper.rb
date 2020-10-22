@@ -8,10 +8,11 @@ class Scraper
         html = open(@base_url + "/tables")
         html_parsed = Nokogiri::HTML(html)
         clubs = html_parsed.css('.tableBodyContainer.isPL').css('tr:not(.expandable)')
+        # @league = html_parsed.css('.tabbedContent').css('.current').text
 
         clubs.each do |club|
+            name = club.css('.long').text
             position = club.css('.value').text
-            club_name = club.css('.long').text
             matches_played = club.css('td')[3].text
             matches_won = club.css('td')[4].text
             matches_drawn = club.css('td')[5].text
@@ -25,10 +26,12 @@ class Scraper
             club_html = open(@base_url + @club_url)
             club_html_parsed = Nokogiri::HTML(club_html)
             squad_url = club_html_parsed.css('.heroPageLinks').css('li')[1].css('a').attribute('href').value
-            squad_info = self.secondary_scrape(squad_url)
+            # squad_info = self.secondary_scrape(squad_url)
 
-            club = Club.new(club_name)
-            table = League.new(position, club, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
+            # players = Player.new(player_number, player_name, player_position)
+            # league = League.find_or_create_by_name(@league)
+            club = Club.new(name, league, position, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
+
         end
     end
 
@@ -41,10 +44,6 @@ class Scraper
             player_number = player.css('.number').text
             player_name = player.css('.name').text
             player_position = player.css('.position').text
-    
-            # puts "--------------------------------"
-            # puts "#{player_number}  #{player_name}"
-            # puts "#{player_position}"
         end
     end
 
