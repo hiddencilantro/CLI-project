@@ -26,14 +26,15 @@ class Scraper
             club_html_parsed = Nokogiri::HTML(club_html)
             squad_url = club_html_parsed.css('.heroPageLinks').css('li')[1].css('a').attribute('href').value
 
-            table = Team.new(position, club_name, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
+            club = Club.new(club_name)
+            table = League.new(position, club, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
 
-            puts "========================================================"
-            puts "#{position}  #{club_name}"
-            puts ""
-            puts "Played: #{matches_played} / Won: #{matches_won} / Drawn: #{matches_drawn} / Lost: #{matches_lost} / Points: #{points}"
-            puts "Goals For: #{goals_for} / Goals Against: #{goals_against} / Goal Difference: #{goal_diff}"
-            puts ""
+            # puts "========================================================"
+            # puts "#{position}  #{club_name}"
+            # puts ""
+            # puts "Played: #{matches_played} / Won: #{matches_won} / Drawn: #{matches_drawn} / Lost: #{matches_lost} / Points: #{points}"
+            # puts "Goals For: #{goals_for} / Goals Against: #{goals_against} / Goal Difference: #{goal_diff}"
+            # puts ""
 
             squad_info = self.second_scrape(squad_url)
         end
@@ -49,9 +50,9 @@ class Scraper
             player_name = player.css('.name').text
             player_position = player.css('.position').text
     
-            puts "--------------------------------"
-            puts "#{player_number}  #{player_name}"
-            puts "#{player_position}"
+            # puts "--------------------------------"
+            # puts "#{player_number}  #{player_name}"
+            # puts "#{player_position}"
         end
     end
 

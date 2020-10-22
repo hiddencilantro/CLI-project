@@ -3,3 +3,5 @@
 require_relative '../config/environment.rb'
 
 Scraper.new.first_scrape
+
+binding.pry
