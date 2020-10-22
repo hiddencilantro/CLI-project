@@ -15,6 +15,10 @@ class CLI
             case user_input
             when "1"
                 Club.print_all_clubs
+                puts "Enter a number to see squad details"
+                club_selection = gets.chomp
+                selection_to_index = club_selection.to_i - 1
+                Player.all[selection_to_index].print_all_players
                 break
             when "2"
                 Club.print_league_standings

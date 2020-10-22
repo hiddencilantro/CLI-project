@@ -2,9 +2,10 @@ class Player
 
     @@all = []
 
-    attr_accessor :player_number, :player_name, :player_position
+    attr_accessor :club, :player_number, :player_name, :player_position
 
-    def initialize(player_number, player_name, player_position)
+    def initialize(club, player_number, player_name, player_position)
+        @club = club
         @player_number = player_number
         @player_name = player_name
         @player_position = player_position
