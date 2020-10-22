@@ -13,11 +13,12 @@ class CLI
         puts "2. Current league standings"
         user_input = gets.chomp
         if user_input == "1"
-            #code for 1
+            Club.print_all_clubs
         elsif user_input == "2"
-            #code for 2
+            League.print_league_standings
         else
-            #error
+            puts "Invalid entry. Please try again."
+            
         end
 
     end

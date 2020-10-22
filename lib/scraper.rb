@@ -25,18 +25,10 @@ class Scraper
             club_html = open(@base_url + @club_url)
             club_html_parsed = Nokogiri::HTML(club_html)
             squad_url = club_html_parsed.css('.heroPageLinks').css('li')[1].css('a').attribute('href').value
+            squad_info = self.secondary_scrape(squad_url)
 
             club = Club.new(club_name)
             table = League.new(position, club, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
-
-            # puts "========================================================"
-            # puts "#{position}  #{club_name}"
-            # puts ""
-            # puts "Played: #{matches_played} / Won: #{matches_won} / Drawn: #{matches_drawn} / Lost: #{matches_lost} / Points: #{points}"
-            # puts "Goals For: #{goals_for} / Goals Against: #{goals_against} / Goal Difference: #{goal_diff}"
-            # puts ""
-
-            squad_info = self.secondary_scrape(squad_url)
         end
     end
 

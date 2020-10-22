@@ -13,4 +13,8 @@ class Club
         @@all
     end
 
+    def self.print_all_clubs
+        self.all.each_with_index {|club, index| puts "#{index + 1}. #{club.name}"}
+    end
+
 end
