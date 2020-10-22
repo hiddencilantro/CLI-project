@@ -4,7 +4,7 @@ class Scraper
         @base_url = "https://www.premierleague.com"
     end
 
-    def first_scrape
+    def initial_scrape
         html = open(@base_url + "/tables")
         html_parsed = Nokogiri::HTML(html)
         clubs = html_parsed.css('.tableBodyContainer.isPL').css('tr:not(.expandable)')
@@ -36,11 +36,11 @@ class Scraper
             # puts "Goals For: #{goals_for} / Goals Against: #{goals_against} / Goal Difference: #{goal_diff}"
             # puts ""
 
-            squad_info = self.second_scrape(squad_url)
+            squad_info = self.secondary_scrape(squad_url)
         end
     end
 
-    def second_scrape(squad_url)
+    def secondary_scrape(squad_url)
         squad_html = open(@base_url + @club_url.delete_suffix("overview") + squad_url)
         squad_html_parsed = Nokogiri::HTML(squad_html)
         squad = squad_html_parsed.css('.squadListContainer').css('.squadPlayerHeader')

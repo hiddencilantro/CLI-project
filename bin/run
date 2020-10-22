@@ -2,6 +2,6 @@
 
 require_relative '../config/environment.rb'
 
-Scraper.new.first_scrape
+CLI.new.run
 
-binding.pry
+# binding.pry
