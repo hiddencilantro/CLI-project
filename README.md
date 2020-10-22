@@ -9,3 +9,5 @@ You will be able to perform the following operations with this application.
 - Navigate into each club and look at recent results and squad
 - Navigate into squad and view all players
 - View each player and retrieve some basic stats
+
+## Instructions
