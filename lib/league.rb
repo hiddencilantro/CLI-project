@@ -32,7 +32,10 @@ class League
     end
 
     def self.print_league_standings
-        self.all.each {|club| club.print_standings}
+        self.all.each do
+            |club| club.print_standings
+            sleep(0.2)
+        end
     end
 
 end
