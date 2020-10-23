@@ -29,10 +29,10 @@ class Club
 
     def print_standings
         puts "========================================================"
-        puts "#{self.position}  #{self.name}".light_cyan
+        puts "#{self.position}  #{self.name}".light_blue
         puts ""
-        puts "Played: #{self.matches_played} / Won: #{self.matches_won} / Drawn: #{self.matches_drawn} / Lost: #{self.matches_lost} / Points: #{self.points}".light_cyan
-        puts "Goals For: #{self.goals_for} / Goals Against: #{self.goals_against} / Goal Difference: #{self.goal_diff}".light_cyan
+        puts "Played: #{self.matches_played} / Won: #{self.matches_won} / Drawn: #{self.matches_drawn} / Lost: #{self.matches_lost} / Points: #{self.points}".light_blue
+        puts "Goals For: #{self.goals_for} / Goals Against: #{self.goals_against} / Goal Difference: #{self.goal_diff}".light_blue
         puts ""
     end
 
@@ -44,7 +44,10 @@ class Club
     end
 
     def self.print_all_clubs
-        self.all.each_with_index {|club, index| puts "#{index + 1}. #{club.name}".light_blue}
+        self.all.each_with_index do |club, index| 
+            puts ""
+            puts "#{index + 1}. #{club.name}".light_blue
+        end
     end
 
 end

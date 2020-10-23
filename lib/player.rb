@@ -22,8 +22,8 @@ class Player
     
     def print_player
         puts "--------------------------------"
-        puts "#{self.player_number} #{self.player_name}"
-        puts "#{self.player_position}"
+        puts "#{self.player_number} #{self.player_name}".light_blue
+        puts "#{self.player_position}".light_blue
     end
 
 end
