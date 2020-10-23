@@ -7,7 +7,7 @@ class CLI
         Scraper.new.initial_scrape
         puts "Done."
         sleep(0.5)
-        puts "Enter the number you'd like to view."
+        puts "Enter the number you'd like to see."
         puts ""
         puts "1. List of all Premier League clubs"
         puts "2. Current league standings"
@@ -18,7 +18,10 @@ class CLI
                 puts "Enter a number to see squad details"
                 club_selection = gets.chomp
                 selection_to_index = club_selection.to_i - 1
-                Player.all[selection_to_index].print_all_players
+                Player.all.select do |player| 
+                    player.club == Club.all[selection_to_index]
+                    player.print_player
+                end
                 break
             when "2"
                 Club.print_league_standings

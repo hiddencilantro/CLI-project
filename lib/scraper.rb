@@ -30,7 +30,7 @@ class Scraper
 
             league = League.find_or_create_by_name(@league)
             club = Club.new(name, league, position, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
-            players = Player.new(club, squad_info[:player_number], squad_info[:player_name], squad_info[:player_position])
+            players = Player.new(club, squad_info[:number], squad_info[:name], squad_info[:position])
 
         end
     end
@@ -38,14 +38,16 @@ class Scraper
     def secondary_scrape(squad_url)
         squad_html = open(@base_url + @club_url.delete_suffix("overview") + squad_url)
         squad_html_parsed = Nokogiri::HTML(squad_html)
-        squad = squad_html_parsed.css('.squadListContainer').css('.squadPlayerHeader')
+        squad = squad_html_parsed.css('.playerCardInfo')
 
+        squad_hash = {}
         squad.each do |player|
             player_number = player.css('.number').text
             player_name = player.css('.name').text
             player_position = player.css('.position').text
+            squad_hash = {number: player_number, name: player_name, position: player_position}
         end
-        return {player_number: player_number, player_name: player_name, player_position: player_position}
+        return squad_hash
     end
 
 end

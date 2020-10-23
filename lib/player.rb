@@ -18,8 +18,8 @@ class Player
     
     def print_player
         puts "--------------------------------"
-        puts "#{player_number}  #{player_name}"
-        puts "#{player_position}"
+        puts "#{self.player_number}  #{self.player_name}"
+        puts "#{self.player_position}"
     end
 
     def self.print_all_players
@@ -28,6 +28,7 @@ class Player
             # sleep(0.2)
         end
     end
+
 end
 
 
