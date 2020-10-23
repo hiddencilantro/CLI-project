@@ -1,7 +1,7 @@
 class CLI
 
     def run
-        puts "Welcome to the Premier League CLI Application!"
+        puts "Welcome to the Premier League CLI Application!".magenta
         sleep(0.5)
         puts "Loading football data... Please wait..."
         Scraper.new.initial_scrape
