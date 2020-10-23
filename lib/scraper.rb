@@ -2,13 +2,13 @@ class Scraper
 
     def initialize
         @base_url = "https://www.premierleague.com"
+        @league = "Premier League"
     end
 
     def initial_scrape
         html = open(@base_url + "/tables")
         html_parsed = Nokogiri::HTML(html)
         clubs = html_parsed.css('.tableBodyContainer.isPL').css('tr:not(.expandable)')
-        @league = html_parsed.css('.tabbedContent').css('.current').text
 
         clubs.each do |club|
             name = club.css('.long').text
