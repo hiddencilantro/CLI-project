@@ -23,11 +23,11 @@ class League
     end
 
     def clubs
-        Clubs.all.select {|club| club.league == self}
+        Club.all.select {|club| club.league == self}
     end
 
     def players
-        Players.all.select {|player| player.club == self.clubs}
+        Player.all.select {|player| self.clubs.include?(player.club)}
     end
 
 end

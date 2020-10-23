@@ -27,10 +27,6 @@ class Club
         Player.all.select {|player| player.club == self}
     end
 
-    def league
-        League.all.select {|league| league.clubs == self}
-    end
-
     def print_standings
         puts "========================================================"
         puts "#{self.position}  #{self.name}"

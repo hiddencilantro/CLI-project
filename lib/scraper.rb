@@ -2,7 +2,6 @@ class Scraper
 
     def initialize
         @base_url = "https://www.premierleague.com"
-        @league = "Premier League"
     end
 
     def initial_scrape
@@ -12,6 +11,7 @@ class Scraper
 
         clubs.each do |club|
             name = club.css('.long').text
+            league_name = "Premier League"
             position = club.css('.value').text
             matches_played = club.css('td')[3].text
             matches_won = club.css('td')[4].text
@@ -22,7 +22,7 @@ class Scraper
             goal_diff = club.css('td')[9].text.strip
             points = club.css('td')[10].text
 
-            league = League.find_or_create_by_name(@league)
+            league = League.find_or_create_by_name(league_name)
             @new_club = Club.new(name, league, position, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
 
             @club_url = club.css('.team').css('a').attribute('href').value
