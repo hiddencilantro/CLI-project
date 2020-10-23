@@ -3,7 +3,7 @@ class CLI
     def run
         puts "Welcome to the Premier League CLI Application!"
         sleep(0.5)
-        puts "Loading football data... Please wait."
+        puts "Loading football data... Please wait..."
         Scraper.new.initial_scrape
         puts "Done."
         sleep(0.5)
@@ -15,12 +15,14 @@ class CLI
             case user_input
             when "1"
                 Club.print_all_clubs
-                puts "Enter a number to see squad details"
+                puts "Enter a club number to view the squad"
                 club_selection = gets.chomp
                 selection_to_index = club_selection.to_i - 1
                 Player.all.select do |player| 
-                    player.club == Club.all[selection_to_index]
-                    player.print_player
+                    if player.club == Club.all[selection_to_index]
+                        player.print_player
+                        sleep(0.1)
+                    end
                 end
                 break
             when "2"
