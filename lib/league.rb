@@ -22,4 +22,12 @@ class League
         end
     end
 
+    def clubs
+        Clubs.all.select {|club| club.league == self}
+    end
+
+    def players
+        Players.all.select {|player| player.club == self.clubs}
+    end
+
 end

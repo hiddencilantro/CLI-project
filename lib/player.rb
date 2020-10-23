@@ -15,6 +15,14 @@ class Player
     def self.all
         @@all
     end
+
+    def clubs
+        Club.all.select {|club| club.name == self.club}
+    end
+
+    def league
+        League.all.select {|league| league.players == self}
+    end
     
     def print_player
         puts "--------------------------------"
