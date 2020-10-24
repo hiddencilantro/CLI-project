@@ -106,7 +106,7 @@ class CLI
 
     def invalid_entry
         puts ""
-        puts "Invalid entry. Please try again.".red
+        puts "Oops! Invalid entry. Please try again.".red
     end
 
     def goodbye

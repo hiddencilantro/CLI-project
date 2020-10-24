@@ -7,9 +7,9 @@ class Scraper
     def initial_scrape
         html = open(@base_url + "/tables")
         html_parsed = Nokogiri::HTML(html)
-        clubs = html_parsed.css('.tableBodyContainer.isPL').css('tr:not(.expandable)')
+        get_clubs = html_parsed.css('.tableBodyContainer.isPL').css('tr:not(.expandable)')
 
-        clubs.each do |club|
+        get_clubs.each do |club|
             name = club.css('.long').text
             league_name = "Premier League"
             position = club.css('.value').text
@@ -36,14 +36,14 @@ class Scraper
     def secondary_scrape(squad_url)
         squad_html = open(@base_url + @club_url.delete_suffix("overview") + squad_url)
         squad_html_parsed = Nokogiri::HTML(squad_html)
-        squad = squad_html_parsed.css('.playerCardInfo')
+        get_squad = squad_html_parsed.css('.playerCardInfo')
 
-        squad.each do |player|
+        get_squad.each do |player|
             player_number = player.css('.number').text
             player_name = player.css('.name').text
             player_position = player.css('.position').text
 
-            players = Player.new(@new_club, player_number, player_name, player_position)
+            Player.new(@new_club, player_number, player_name, player_position)
         end
     end
 
