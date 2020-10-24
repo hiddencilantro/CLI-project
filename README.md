@@ -1,13 +1,12 @@
 # CLI Project - Premier League
 
-A CLI application with basic information and stats for the Premier League.
+A CLI application with basic info and stats for the Premier League.
 
 ## Overview
 
-You will be able to perform the following operations with this application.
+You will be able to perform the following with this application.
+- View a complete list of the Premier League clubs
+- Navigate into each club and view all players
 - View current standings for the Premier League
-- Navigate into each club and look at recent results and squad
-- Navigate into squad and view all players
-- View each player and retrieve some basic stats
 
 ## Instructions
