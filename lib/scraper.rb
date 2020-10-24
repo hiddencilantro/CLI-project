@@ -25,16 +25,16 @@ class Scraper
             league = League.find_or_create_by_name(league_name)
             @new_club = Club.new(name, league, position, matches_played, matches_won, matches_drawn, matches_lost, goals_for, goals_against, goal_diff, points)
 
-            @club_url = club.css('.team').css('a').attribute('href').value
-            club_html = open(@base_url + @club_url)
-            club_html_parsed = Nokogiri::HTML(club_html)
-            squad_url = club_html_parsed.css('.heroPageLinks').css('li')[1].css('a').attribute('href').value
-            self.secondary_scrape(squad_url)
+            club_url = club.css('.team').css('a').attribute('href').value
+            self.deep_scrape(club_url)
         end
     end
 
-    def secondary_scrape(squad_url)
-        squad_html = open(@base_url + @club_url.delete_suffix("overview") + squad_url)
+    def deep_scrape(club_url)
+        club_html = open(@base_url + club_url)
+        club_html_parsed = Nokogiri::HTML(club_html)
+        squad_url = club_html_parsed.css('.heroPageLinks').css('li')[1].css('a').attribute('href').value
+        squad_html = open(@base_url + club_url.delete_suffix("overview") + squad_url)
         squad_html_parsed = Nokogiri::HTML(squad_html)
         get_squad = squad_html_parsed.css('.playerCardInfo')
 
