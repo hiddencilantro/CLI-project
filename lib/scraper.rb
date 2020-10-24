@@ -29,7 +29,7 @@ class Scraper
             club_html = open(@base_url + @club_url)
             club_html_parsed = Nokogiri::HTML(club_html)
             squad_url = club_html_parsed.css('.heroPageLinks').css('li')[1].css('a').attribute('href').value
-            squad_info = self.secondary_scrape(squad_url)
+            self.secondary_scrape(squad_url)
         end
     end
 
