@@ -1,6 +1,18 @@
 class CLI
 
     def run
+        puts "
+         ___________________________
+        |             |             |
+        |___          |          ___|
+        |_  |         |         |  _|
+       .| | |.       ,|.       .| | |.
+       || | | )     ( | )     ( | | ||
+       '|_| |'       `|'       `| |_|'
+        |___|         |         |___|
+        |             |             |
+        |_____________|_____________|
+        "
         puts ""
         puts "Welcome to the Premier League CLI Application!".light_blue
         puts ""

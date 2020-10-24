@@ -45,7 +45,6 @@ class Club
 
     def self.print_all_clubs
         self.all.each_with_index do |club, index| 
-            puts ""
             puts "#{index + 1}. #{club.name}".light_blue
         end
     end
