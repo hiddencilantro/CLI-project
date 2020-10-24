@@ -47,10 +47,11 @@ class CLI
 
     def list_of_clubs_menu
         puts ""
-        puts "Select a club number to view the squad"
+        puts "Enter a number '1-20' to select a club"
         puts "Enter '0' to return to the main menu"
         puts ""
-        case user_input
+        print "Premier League >> " 
+        case user_input = gets.chomp
         when "0"
             main_menu
         when ('1'..'20')
@@ -109,7 +110,9 @@ class CLI
     end
 
     def goodbye
+        puts ""
         puts "Thanks for using the Premier League CLI Application! Goodbye!".light_green
+        puts ""
         exit!
     end
 end
