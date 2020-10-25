@@ -12,7 +12,7 @@ class CLI
         |___|         |         |___|
         |             |             |
         |_____________|_____________|
-        "
+        ".green
         puts ""
         puts "Welcome to the Premier League CLI Application!".light_blue
         puts ""
