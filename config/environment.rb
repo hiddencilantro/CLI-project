@@ -1,7 +1,6 @@
-require 'pry'
-require 'nokogiri'
+require 'bundler/setup'
+Bundler.require(:default)
 require 'open-uri'
-require 'colorize'
 
 require_relative '../lib/league.rb'
 require_relative '../lib/club.rb'
