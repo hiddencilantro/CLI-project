@@ -14,7 +14,7 @@ You will be able to perform the following with this application.
 - Start the application using `ruby bin/run`
 
 ## Contributor's guide
-Feel free to report bugs or request pulls on [GitHub]](https://github.com/hiddencilantro/CLI-project).
+Feel free to report bugs or request pulls on [GitHub](https://github.com/hiddencilantro/CLI-project).
 
 ## Links
 [Video demo](https://vimeo.com/472315274)
