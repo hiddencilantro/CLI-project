@@ -18,4 +18,5 @@ Feel free to report bugs or request pulls on [GitHub]](https://github.com/hidden
 
 ## Links
 [Video demo](https://vimeo.com/472315274)
+
 [Blog](https://dev.to/hiddencilantro/ruby-cli-application-scraping-object-relationships-and-single-source-of-truth-2ni4)
